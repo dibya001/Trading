@@ -188,6 +188,7 @@ public class Add_data extends AppCompatActivity {
                 // set the new task and clear flags
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
+                //Changes made to Temp1 branch
                 //System.out.print(5);
 
                 //Log.i("data",proloss+e1.getText().toString()+e3.getText().toString()+e5.getText().toString());
