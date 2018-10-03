@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,7 +15,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -103,6 +107,27 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(this, Add_data.class);
             startActivity(i);
             // Toast.makeText(this,"hthtt",Toast.LENGTH_LONG).show();
+        } else if (item.getItemId() == R.id.logout) {
+            signOut();
+
+        }
+        return true;
+    }
+
+    private void signOut() {
+        FirebaseAuth.getInstance().signOut();
+        GoogleSignIn.getClient(this, MyFirebase.gso).signOut().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+
+                });
+    }
         }
         return true;
     }
