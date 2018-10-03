@@ -15,12 +15,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -129,5 +127,8 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 });
+    }
+        }
+        return true;
     }
 }

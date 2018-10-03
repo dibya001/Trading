@@ -1,8 +1,8 @@
 package com.example.dibya.myapplication;
 
 public class TradeData {
-    int id,profit;
-    String type,switch2,comments,warnings,checkboxinfo,date,entry,target,protype,stop;
+    int id, profit;
+    String type, switch2, comments, warnings, checkboxinfo, date, entry, target, protype, stop;
 
     public int getId() {
         return id;
@@ -75,9 +75,9 @@ public class TradeData {
     public void setProtype(String protype) {
         this.protype = protype;
     }
-    public void setType(String type)
-    {
-        this.type=type;
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setSwitch2(String switch2) {
