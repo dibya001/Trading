@@ -34,8 +34,6 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        int i = details.get(position).getId();
-        holder.id.setText(String.valueOf(i));
         holder.amount.setText(String.valueOf(details.get(position).getProfit()));
         holder.type.setText(details.get(position).getType());
         holder.switch2.setText(details.get(position).getSwitch2());
@@ -57,12 +55,11 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.MyViewHolder> 
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView id, type, switch2, protype, amount;
+        TextView type, switch2, protype, amount;
         LinearLayout ll;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            id = itemView.findViewById(R.id.id1);
             type = itemView.findViewById(R.id.type1);
             protype = itemView.findViewById(R.id.protype1);
             amount = itemView.findViewById(R.id.amount1);

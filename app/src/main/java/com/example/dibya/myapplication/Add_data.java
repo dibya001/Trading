@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,6 +15,12 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Switch;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Add_data extends AppCompatActivity {
 
@@ -23,7 +31,8 @@ public class Add_data extends AppCompatActivity {
     EditText e1, e2, e3, e4, e5, e6, e7;
     Button submit;
     Switch s, s2;
-
+    RadioButton rb1, rb2;
+    private DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,37 +40,21 @@ public class Add_data extends AppCompatActivity {
         Toolbar tb = findViewById(R.id.tb);
         setSupportActionBar(tb);
         tb.setTitleTextColor(Color.WHITE);
-        final SQLiteDatabase mydatabase = openOrCreateDatabase("trade_data", MODE_PRIVATE, null);
-        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS Trade(Id INTEGER PRIMARY KEY AUTOINCREMENT,type VARCHAR(10), switch2 VARCHAR(10) ," +
-                "Profit INTEGER,protype VARCHAR(10),entry VARCHAR(100),target VARCHAR(100), stop VARCHAR(100), warning VARCHAR(100), " +
-                "comment VARCHAR(100), date VARCHAR(100),extrainfo VARCHAR(100) );");
-
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         s = findViewById(R.id.type);
+        s2 = findViewById(R.id.switch2);
         c1 = findViewById(R.id.ch1);
         c2 = findViewById(R.id.ch2);
         c3 = findViewById(R.id.ch3);
         c4 = findViewById(R.id.ch4);
         c5 = findViewById(R.id.ch5);
         c6 = findViewById(R.id.ch6);
-
-        if (s.isChecked()) {
-            type = (String) s.getTextOn();
-        } else {
-            type = (String) s.getTextOff();
-        }
-        s2 = findViewById(R.id.switch2);
-        if (s2.isChecked()) {
-            data2 = (String) s2.getTextOn();
-        } else {
-            data2 = (String) s2.getTextOff();
-        }
         Boolean b1 = s.isChecked();
         Boolean b2 = s2.isChecked();
         if (b1 && b2) {
             c1.setEnabled(true);
             c2.setEnabled(true);
         } else if (!b1 && b2) {
-
             c2.setEnabled(true);
             c5.setEnabled(true);
         } else if (!b1 && !b2) {
@@ -75,6 +68,13 @@ public class Add_data extends AppCompatActivity {
         s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                c1.setChecked(false);
+                c1.setChecked(false);
+                c2.setChecked(false);
+                c3.setChecked(false);
+                c4.setChecked(false);
+                c5.setChecked(false);
+                c6.setChecked(false);
                 c1.setEnabled(false);
                 c2.setEnabled(false);
                 c3.setEnabled(false);
@@ -104,6 +104,13 @@ public class Add_data extends AppCompatActivity {
         s2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                c1.setChecked(false);
+                c1.setChecked(false);
+                c2.setChecked(false);
+                c3.setChecked(false);
+                c4.setChecked(false);
+                c5.setChecked(false);
+                c6.setChecked(false);
                 c1.setEnabled(false);
                 c2.setEnabled(false);
                 c3.setEnabled(false);
@@ -138,31 +145,58 @@ public class Add_data extends AppCompatActivity {
         e5 = findViewById(R.id.warning);
         e6 = findViewById(R.id.proloss);
         e7 = findViewById(R.id.comments);
-        RadioButton rb1 = findViewById(R.id.rb1);
-        RadioButton rb2 = findViewById(R.id.rb2);
-        if (rb1.isChecked()) {
-            proloss = (String) rb1.getText();
-        } else {
-            proloss = (String) rb2.getText();
-        }
+        rb1 = findViewById(R.id.rb1);
+        rb2 = findViewById(R.id.rb2);
+
         submit = findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TradeData tradeData = new TradeData();
+                if (s.isChecked()) {
+                    type = (String) s.getTextOn();
+                } else {
+                    type = (String) s.getTextOff();
+                }
+                tradeData.setType(type);
+                if (s2.isChecked()) {
+                    data2 = (String) s2.getTextOn();
+                } else {
+                    data2 = (String) s2.getTextOff();
+                }
+                tradeData.setSwitch2(data2);
+                if (rb1.isChecked()) {
+                    proloss = (String) rb1.getText();
+                } else {
+                    proloss = (String) rb2.getText();
+                }
+                tradeData.setProtype(proloss);
+                tradeData.setProfit( Integer.parseInt(e6.getText().toString()));
+                tradeData.setEntry(e1.getText().toString());
+                tradeData.setTarget(e3.getText().toString());
+                tradeData.setStop(e4.getText().toString());
+                tradeData.setWarnings(e5.getText().toString());
+                tradeData.setComments(e7.getText().toString());
+                tradeData.setDate("Dummy for now");
+                tradeData.setCheckboxinfo("Dummy for now");
 
-                String query = "INSERT INTO Trade(type,switch2,Profit,protype,entry,target,stop,warning,comment,date,extrainfo) VALUES(" + "\'" + type + "\'" + "," + "\'" + data2 + "\'" + "," + Integer.parseInt(e6.getText().toString())
-                        + "," + "\'" + proloss + "\'" + "," + "\'" + e1.getText().toString() + "\'" + "," + "\'" + e3.getText().toString() + "\'" + "," + "\'" + e4.getText().toString() + "\'"
-                        + "," + "\'" + e5.getText().toString() + "\'" + "," + "\'" + e7.getText().toString() + "\'" + "," + "\'" + "hello" + "\'" + "," + "\'" + "hello2" + "\'" + ")";
-                mydatabase.execSQL(query);
-                Intent i = new Intent(Add_data.this, MainActivity.class);
-                // set the new task and clear flags
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(i);
-                //Changes made to Temp1 branch
-                //System.out.print(5);
+                mDatabase.child("Trade_info").push().setValue(tradeData)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Intent i = new Intent(Add_data.this, MainActivity.class);
+                                // set the new task and clear flags
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(i);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
 
-                //Log.i("data",proloss+e1.getText().toString()+e3.getText().toString()+e5.getText().toString());
-                //Log.i("data",e2.getText().toString()+data2+type) ;
+                                Toast.makeText(Add_data.this,"Could Not Send data to the server",Toast.LENGTH_LONG).show();
+                            }
+                        });
             }
         });
     }
