@@ -19,14 +19,19 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     TestAdapter rcAdapter;
     RecyclerView rc;
     ArrayList<TradeData> details;
-    Cursor cursor;
-
+    private DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,24 +39,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar tb = findViewById(R.id.tb);
         setSupportActionBar(tb);
         tb.setTitleTextColor(Color.WHITE);
-        final SQLiteDatabase mydatabase = openOrCreateDatabase("trade_data", MODE_PRIVATE, null);
-        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS Trade(Id INTEGER PRIMARY KEY AUTOINCREMENT,type VARCHAR(10), switch2 VARCHAR(10) ," +
-                "Profit INTEGER,protype VARCHAR(10),entry VARCHAR(100),target VARCHAR(100), stop VARCHAR(100), warning VARCHAR(100), " +
-                "comment VARCHAR(100), date VARCHAR(100),extrainfo VARCHAR(100) );");
-        cursor = mydatabase.rawQuery("Select * from Trade ORDER BY Id DESC", null);
-
         rc = findViewById(R.id.rc);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         setData();
-        if (details.isEmpty()) {
-            Snackbar.make(findViewById(R.id.linear), "No data to Display", Snackbar.LENGTH_LONG).setAction("CLOSE", new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            }).show();
-        }
         rcAdapter = new TestAdapter(this, details);
-
         makegrid();
     }
 
@@ -59,41 +50,43 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         rcAdapter.notifyDataSetChanged();
-
     }
 
     private void setData() {
         details = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            TradeData t = new TradeData();
-            t.setId(cursor.getInt(0));
-            t.setType(cursor.getString(1));
-            t.setSwitch2(cursor.getString(2));
-            t.setProfit(cursor.getInt(3));
-            t.setProtype(cursor.getString(4));
-            t.setEntry(cursor.getString(5));
-            t.setTarget(cursor.getString(6));
-            t.setStop(cursor.getString(7));
-            t.setWarnings(cursor.getString(8));
-            t.setComments(cursor.getString(9));
-            t.setDate(cursor.getString(10));
-            t.setCheckboxinfo(cursor.getString(11));
-            details.add(t);
-            Log.i("dibya", t.getProtype() + t.getProfit());
-        }
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                for (DataSnapshot dataSnapshot1: dataSnapshot.child("Trade_info").getChildren())
+                {
+                    Log.i("dibya",dataSnapshot.toString());
+                    TradeData tradeData = dataSnapshot1.getValue(TradeData.class);
+                    details.add(tradeData);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //Show Alert
+                Snackbar.make(findViewById(R.id.linear), "Sorry!! Could not fetch data", Snackbar.LENGTH_LONG).setAction("CLOSE", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                }).show();
+            }
+        });
     }
 
     private void makegrid() {
         GridLayoutManager lLayout = new GridLayoutManager(this, 2);
         rc.setHasFixedSize(true);
-
         rc.setLayoutManager(lLayout);
-
         rc.setAdapter(rcAdapter);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
             // Toast.makeText(this,"hthtt",Toast.LENGTH_LONG).show();
         } else if (item.getItemId() == R.id.logout) {
             signOut();
-
         }
         return true;
     }
@@ -128,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
 
                 });
     }
-        }
-        return true;
-    }
+
 }
+
