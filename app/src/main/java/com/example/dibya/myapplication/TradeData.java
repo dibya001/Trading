@@ -1,11 +1,11 @@
 package com.example.dibya.myapplication;
 
 public class TradeData {
-    int id, profit;
-    String type, switch2, comments, warnings, checkboxinfo, date, entry, target, protype, stop;
+    int profit;
+    String type, switch2, comments, warnings, checkboxinfo, date, entry, target, protype, stop, userId;
 
-    public int getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
     public String getEntry() {
@@ -52,8 +52,8 @@ public class TradeData {
         this.checkboxinfo = checkboxinfo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getWarnings() {

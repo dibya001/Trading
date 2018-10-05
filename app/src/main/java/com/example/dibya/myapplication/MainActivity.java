@@ -1,5 +1,6 @@
 package com.example.dibya.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rc;
     ArrayList<TradeData> details;
     private DatabaseReference mDatabase;
+    ProgressDialog mProgressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         tb.setTitleTextColor(Color.WHITE);
         rc = findViewById(R.id.rc);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        details = new ArrayList<>();
         setData();
         rcAdapter = new TestAdapter(this, details);
         makegrid();
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        details = new ArrayList<>();
+        showProgressDialog();
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -63,13 +66,14 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("dibya",dataSnapshot.toString());
                     TradeData tradeData = dataSnapshot1.getValue(TradeData.class);
                     details.add(tradeData);
+                    rcAdapter.notifyDataSetChanged();
                 }
-
+                hideProgressDialog();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                //Show Alert
+                hideProgressDialog();
                 Snackbar.make(findViewById(R.id.linear), "Sorry!! Could not fetch data", Snackbar.LENGTH_LONG).setAction("CLOSE", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -78,6 +82,23 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
             }
         });
+    }
+
+    private void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
+
+    private void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(MainActivity.this);
+            mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+
     }
 
     private void makegrid() {

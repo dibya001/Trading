@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -33,6 +34,7 @@ public class Add_data extends AppCompatActivity {
     Switch s, s2;
     RadioButton rb1, rb2;
     private DatabaseReference mDatabase;
+    FirebaseUser firebaseUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,7 @@ public class Add_data extends AppCompatActivity {
         setSupportActionBar(tb);
         tb.setTitleTextColor(Color.WHITE);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseUser = MyFirebase.mAuth.getCurrentUser();
         s = findViewById(R.id.type);
         s2 = findViewById(R.id.switch2);
         c1 = findViewById(R.id.ch1);
@@ -153,6 +156,8 @@ public class Add_data extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 TradeData tradeData = new TradeData();
+                String userid =  firebaseUser.getEmail();
+                tradeData.setUserId(userid);
                 if (s.isChecked()) {
                     type = (String) s.getTextOn();
                 } else {
