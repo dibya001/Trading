@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "378958296943-qunsifhdgroe342oin8jetncdvibptiq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dibya.myapplication",
+            "certificate_hash": "d4fb89b23ec7db8cc5b958e9b5fe8d849b489b7f"
+          }
+        },
+        {
           "client_id": "378958296943-o4vfg56l4d4s4rl1nbut64jb0t317jh8.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -44,37 +52,6 @@
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:378958296943:android:200ecfb5c9c3ba52",
-        "android_client_info": {
-          "package_name": "com.example.dibya.uber"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "378958296943-o4vfg56l4d4s4rl1nbut64jb0t317jh8.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCKEynobw1DUkWLXc2VYrVQ04VMk8m-Ks4"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
