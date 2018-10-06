@@ -3,39 +3,40 @@ package com.example.dibya.myapplication;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     TestAdapter rcAdapter;
     RecyclerView rc;
-    ArrayList<TradeData> details;
+    HashMap<String, TradeData> details;
     private DatabaseReference mDatabase;
     ProgressDialog mProgressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         tb.setTitleTextColor(Color.WHITE);
         rc = findViewById(R.id.rc);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        details = new ArrayList<>();
+        details = new HashMap<>();
         setData();
         rcAdapter = new TestAdapter(this, details);
         makegrid();
@@ -59,18 +60,48 @@ public class MainActivity extends AppCompatActivity {
 
     private void setData() {
         showProgressDialog();
+
+        mDatabase.child("Trade_info").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                TradeData tradeData = dataSnapshot.getValue(TradeData.class);
+                details.put(dataSnapshot.getKey(), tradeData);
+                rcAdapter.notifyDataSetChanged();
+                hideProgressDialog();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                TradeData tradeData = dataSnapshot.getValue(TradeData.class);
+                details.put(dataSnapshot.getKey(), tradeData);
+                rcAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                TradeData tradeData = dataSnapshot.getValue(TradeData.class);
+                details.remove(dataSnapshot.getKey());
+                rcAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot dataSnapshot1: dataSnapshot.child("Trade_info").getChildren())
-                {
-                    Log.i("dibya",dataSnapshot.toString());
-                    TradeData tradeData = dataSnapshot1.getValue(TradeData.class);
-                    details.add(tradeData);
-                    rcAdapter.notifyDataSetChanged();
-                }
-                hideProgressDialog();
+
             }
 
             @Override
