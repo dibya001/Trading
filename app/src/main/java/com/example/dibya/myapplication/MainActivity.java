@@ -31,7 +31,7 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
     TestAdapter rcAdapter;
     RecyclerView rc;
-    HashMap<String, TradeData> details;
+    HashMap<String, Completed> details;
     private DatabaseReference mDatabase;
     ProgressDialog mProgressDialog;
 
@@ -65,22 +65,22 @@ public class MainActivity extends AppCompatActivity {
         myTopPostsQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                TradeData tradeData = dataSnapshot.getValue(TradeData.class);
-                details.put(dataSnapshot.getKey(), tradeData);
+                Completed completed = dataSnapshot.getValue(Completed.class);
+                details.put(dataSnapshot.getKey(), completed);
                 rcAdapter.notifyDataSetChanged();
                 hideProgressDialog();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                TradeData tradeData = dataSnapshot.getValue(TradeData.class);
-                details.put(dataSnapshot.getKey(), tradeData);
+                Completed completed = dataSnapshot.getValue(Completed.class);
+                details.put(dataSnapshot.getKey(), completed);
                 rcAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                TradeData tradeData = dataSnapshot.getValue(TradeData.class);
+                Completed completed = dataSnapshot.getValue(Completed.class);
                 details.remove(dataSnapshot.getKey());
                 rcAdapter.notifyDataSetChanged();
             }

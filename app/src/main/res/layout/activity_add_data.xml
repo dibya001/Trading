@@ -156,54 +156,15 @@
                 android:hint="Warnings"
                 android:singleLine="true" />
 
-            <com.example.dibya.myapplication.MyTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Outcome" />
-
-            <RadioGroup
-                android:id="@+id/rg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rb1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Profit" />
-
-                <RadioButton
-                    android:id="@+id/rb2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Loss" />
-            </RadioGroup>
-
-            <EditText
-                android:id="@+id/proloss"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/comments"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Comments"
-                android:singleLine="true" />
-
             <Button
-                android:id="@+id/submit"
+                android:id="@+id/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
                 android:layout_marginBottom="10dp"
                 android:background="@color/colorPrimaryDark"
                 android:gravity="center|center_horizontal"
-                android:text="Submit"
+                android:text="Save"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
     </ScrollView>

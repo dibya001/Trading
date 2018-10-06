@@ -19,10 +19,10 @@ import java.util.List;
 
 public class TestAdapter extends RecyclerView.Adapter<TestAdapter.MyViewHolder> {
     private Context ctx;
-    private HashMap<String, TradeData> details;
+    private HashMap<String, Completed> details;
     private List<String> keys;
 
-    public TestAdapter(MainActivity ctx, HashMap<String, TradeData> details) {
+    public TestAdapter(MainActivity ctx, HashMap<String, Completed> details) {
         this.ctx = ctx;
         this.details = details;
         keys = new ArrayList<>();
@@ -38,11 +38,11 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        TradeData tradeData = details.get(keys.get(position));
-        holder.amount.setText(tradeData.getProfit() + "");
-        holder.type.setText(tradeData.getType());
-        holder.switch2.setText(tradeData.getSwitch2());
-        holder.protype.setText(tradeData.getProtype());
+        Completed completed = details.get(keys.get(position));
+        holder.amount.setText(completed.getProfit() + "");
+        holder.type.setText(completed.getType());
+        holder.switch2.setText(completed.getSwitch2());
+        holder.protype.setText(completed.getProtype());
         //int img=ctx.getResources().getIdentifier("xyz"+(position),"drawable",ctx.getPackageName());
     }
 

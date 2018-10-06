@@ -30,10 +30,9 @@ public class Add_data extends AppCompatActivity {
     String data2;
     String proloss;
     CheckBox c1, c2, c3, c4, c5, c6;
-    EditText e1, e2, e3, e4, e5, e6, e7;
-    Button submit;
+    EditText e1, e2, e3, e4, e5;
+    Button save;
     Switch s, s2;
-    RadioButton rb1, rb2;
     private DatabaseReference mDatabase;
     FirebaseUser firebaseUser;
     @Override
@@ -147,51 +146,39 @@ public class Add_data extends AppCompatActivity {
         e3 = findViewById(R.id.target);
         e4 = findViewById(R.id.stop);
         e5 = findViewById(R.id.warning);
-        e6 = findViewById(R.id.proloss);
-        e7 = findViewById(R.id.comments);
-        rb1 = findViewById(R.id.rb1);
-        rb2 = findViewById(R.id.rb2);
 
-        submit = findViewById(R.id.submit);
-        submit.setOnClickListener(new View.OnClickListener() {
+        save = findViewById(R.id.save);
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 boolean status=validateData();
                 if(status)
                 {
-                    TradeData tradeData = new TradeData();
+                    Ongoing ongoing = new Ongoing();
                     String userid =  firebaseUser.getEmail();
-                    tradeData.setUserId(userid);
+                    ongoing.setUserId(userid);
                     if (s.isChecked()) {
                         type = (String) s.getTextOn();
                     } else {
                         type = (String) s.getTextOff();
                     }
-                    tradeData.setType(type);
+                    ongoing.setType(type);
                     if (s2.isChecked()) {
                         data2 = (String) s2.getTextOn();
                     } else {
                         data2 = (String) s2.getTextOff();
                     }
-                    tradeData.setSwitch2(data2);
-                    if (rb1.isChecked()) {
-                        proloss = (String) rb1.getText();
-                    } else {
-                        proloss = (String) rb2.getText();
-                    }
-                    tradeData.setProtype(proloss);
-                    tradeData.setProfit( Integer.parseInt(e6.getText().toString()));
-                    tradeData.setEntry(e1.getText().toString());
-                    tradeData.setTarget(e3.getText().toString());
-                    tradeData.setStop(e4.getText().toString());
-                    tradeData.setWarnings(e5.getText().toString());
-                    tradeData.setComments(e7.getText().toString());
-                    tradeData.setDate("Dummy for now");
-                    tradeData.setCheckboxinfo("Dummy for now");
-                    tradeData.setTimeStamp(System.currentTimeMillis());
-
-                    mDatabase.child("Trade_info").push().setValue(tradeData)
+                    ongoing.setSwitch2(data2);
+                    ongoing.setEntry(e1.getText().toString());
+                    ongoing.setTarget(e3.getText().toString());
+                    ongoing.setStop(e4.getText().toString());
+                    ongoing.setWarnings(e5.getText().toString());
+                    ongoing.setDate("Dummy for now");
+                    ongoing.setCheckboxinfo("Dummy for now");
+                    ongoing.setTimeStamp(System.currentTimeMillis());
+                    ongoing.setTradetaken(false);
+                    mDatabase.child("Ongoing").push().setValue(ongoing)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -234,9 +221,9 @@ public class Add_data extends AppCompatActivity {
 
     private Boolean validateData() {
         Boolean status = false;
-        if (e1.getText().toString().trim().length()!=0 && e3.getText().toString().trim().length()!=0 && e4.getText().toString().trim().length()!=0 )
+        if (e1.getText().toString().trim().length()!=0 && e3.getText().toString().trim().length()!=0)
         {
-            if(e5.getText().toString().trim().length()!=0 && e6.getText().toString().trim().length()!=0 && e7.getText().toString().trim().length()!=0)
+            if(e4.getText().toString().trim().length()!=0  && e5.getText().toString().trim().length()!=0)
             {
                 status = true;
             }
