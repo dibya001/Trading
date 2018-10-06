@@ -29,7 +29,7 @@ import com.google.firebase.database.Query;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-    TestAdapter rcAdapter;
+    CompletedAdapter rcAdapter;
     RecyclerView rc;
     HashMap<String, Completed> details;
     private DatabaseReference mDatabase;
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         details = new HashMap<>();
         setData();
-        rcAdapter = new TestAdapter(this, details);
+        rcAdapter = new CompletedAdapter(this, details);
         makegrid();
     }
 
