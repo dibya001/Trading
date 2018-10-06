@@ -189,6 +189,7 @@ public class Add_data extends AppCompatActivity {
                     tradeData.setComments(e7.getText().toString());
                     tradeData.setDate("Dummy for now");
                     tradeData.setCheckboxinfo("Dummy for now");
+                    tradeData.setTimeStamp(System.currentTimeMillis());
 
                     mDatabase.child("Trade_info").push().setValue(tradeData)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
