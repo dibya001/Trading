@@ -95,26 +95,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                hideProgressDialog();
-                Snackbar.make(findViewById(R.id.linear), "Sorry!! Could not fetch data", Snackbar.LENGTH_LONG).setAction("CLOSE", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                }).show();
-            }
-        });
     }
 
     private void hideProgressDialog() {
