@@ -3,6 +3,15 @@ package com.example.dibya.myapplication;
 public class TradeData {
     int profit;
     String type, switch2, comments, warnings, checkboxinfo, date, entry, target, protype, stop, userId;
+    long timeStamp;
+
+    public long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
 
     public String getUserId() {
         return userId;
