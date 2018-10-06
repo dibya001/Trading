@@ -1,5 +1,6 @@
 package com.example.dibya.myapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -155,54 +156,90 @@ public class Add_data extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TradeData tradeData = new TradeData();
-                String userid =  firebaseUser.getEmail();
-                tradeData.setUserId(userid);
-                if (s.isChecked()) {
-                    type = (String) s.getTextOn();
-                } else {
-                    type = (String) s.getTextOff();
-                }
-                tradeData.setType(type);
-                if (s2.isChecked()) {
-                    data2 = (String) s2.getTextOn();
-                } else {
-                    data2 = (String) s2.getTextOff();
-                }
-                tradeData.setSwitch2(data2);
-                if (rb1.isChecked()) {
-                    proloss = (String) rb1.getText();
-                } else {
-                    proloss = (String) rb2.getText();
-                }
-                tradeData.setProtype(proloss);
-                tradeData.setProfit( Integer.parseInt(e6.getText().toString()));
-                tradeData.setEntry(e1.getText().toString());
-                tradeData.setTarget(e3.getText().toString());
-                tradeData.setStop(e4.getText().toString());
-                tradeData.setWarnings(e5.getText().toString());
-                tradeData.setComments(e7.getText().toString());
-                tradeData.setDate("Dummy for now");
-                tradeData.setCheckboxinfo("Dummy for now");
 
-                mDatabase.child("Trade_info").push().setValue(tradeData)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Intent i = new Intent(Add_data.this, MainActivity.class);
-                                // set the new task and clear flags
-                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(i);
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
+                boolean status=validateData();
+                if(status)
+                {
+                    TradeData tradeData = new TradeData();
+                    String userid =  firebaseUser.getEmail();
+                    tradeData.setUserId(userid);
+                    if (s.isChecked()) {
+                        type = (String) s.getTextOn();
+                    } else {
+                        type = (String) s.getTextOff();
+                    }
+                    tradeData.setType(type);
+                    if (s2.isChecked()) {
+                        data2 = (String) s2.getTextOn();
+                    } else {
+                        data2 = (String) s2.getTextOff();
+                    }
+                    tradeData.setSwitch2(data2);
+                    if (rb1.isChecked()) {
+                        proloss = (String) rb1.getText();
+                    } else {
+                        proloss = (String) rb2.getText();
+                    }
+                    tradeData.setProtype(proloss);
+                    tradeData.setProfit( Integer.parseInt(e6.getText().toString()));
+                    tradeData.setEntry(e1.getText().toString());
+                    tradeData.setTarget(e3.getText().toString());
+                    tradeData.setStop(e4.getText().toString());
+                    tradeData.setWarnings(e5.getText().toString());
+                    tradeData.setComments(e7.getText().toString());
+                    tradeData.setDate("Dummy for now");
+                    tradeData.setCheckboxinfo("Dummy for now");
 
-                                Toast.makeText(Add_data.this,"Could Not Send data to the server",Toast.LENGTH_LONG).show();
-                            }
-                        });
+                    mDatabase.child("Trade_info").push().setValue(tradeData)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Intent i = new Intent(Add_data.this, MainActivity.class);
+                                    // set the new task and clear flags
+                                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(i);
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                    Toast.makeText(Add_data.this,"Could Not Send data to the server",Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                }
+                else
+                {
+                    showAlert();
+                }
+
             }
         });
+    }
+
+    private void showAlert() {
+        AlertDialog.Builder ab = new AlertDialog.Builder(this);
+        ab.setTitle("Can't Push Data to Server");
+        ab.setMessage("One or More Empty Fields");
+        ab.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        ab.show();
+    }
+
+    private Boolean validateData() {
+        Boolean status = false;
+        if (e1.getText().toString().trim().length()!=0 && e3.getText().toString().trim().length()!=0 && e4.getText().toString().trim().length()!=0 )
+        {
+            if(e5.getText().toString().trim().length()!=0 && e6.getText().toString().trim().length()!=0 && e7.getText().toString().trim().length()!=0)
+            {
+                status = true;
+            }
+        }
+        return status;
     }
 }
