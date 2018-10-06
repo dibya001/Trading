@@ -29,7 +29,7 @@
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.example.dibya.myapplication.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Short"
@@ -43,7 +43,7 @@
                     android:textOff="Short"
                     android:textOn="Long" />
 
-                <TextView
+                <com.example.dibya.myapplication.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Long"
@@ -57,7 +57,7 @@
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.example.dibya.myapplication.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="neiit"
@@ -71,7 +71,7 @@
                     android:textOff="neiit"
                     android:textOn="Conlsld" />
 
-                <TextView
+                <com.example.dibya.myapplication.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ConsId"
@@ -156,7 +156,7 @@
                 android:hint="Warnings"
                 android:singleLine="true" />
 
-            <TextView
+            <com.example.dibya.myapplication.MyTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Outcome" />

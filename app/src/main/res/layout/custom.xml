@@ -13,30 +13,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
-        <TextView
+        <com.example.dibya.myapplication.MyTextView
             android:id="@+id/type1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="5dp"
+             />
 
-        <TextView
+        <com.example.dibya.myapplication.MyTextView
             android:id="@+id/switch21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp" />
 
-        <TextView
+        <com.example.dibya.myapplication.MyTextView
             android:id="@+id/protype1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp" />
 
-        <TextView
+        <com.example.dibya.myapplication.MyTextView
             android:id="@+id/amount1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
