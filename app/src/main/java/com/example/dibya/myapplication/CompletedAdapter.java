@@ -24,7 +24,7 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.MyVi
     private HashMap<String, Completed> details;
     private List<String> keys;
 
-    public CompletedAdapter(MainActivity ctx, HashMap<String, Completed> details) {
+    public CompletedAdapter(Context ctx, HashMap<String, Completed> details) {
         this.ctx = ctx;
         this.details = details;
         keys = new ArrayList<>();
@@ -33,8 +33,7 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.MyVi
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom, parent, false);
-        //layoutView.setMinimumHeight(parent.getMeasuredHeight() / 2);
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_completed, parent, false);
         return new MyViewHolder(layoutView);
     }
 
@@ -61,7 +60,7 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.MyVi
     public void start(final int pos) {
 
         Intent i = null;
-        ctx.startActivity(new Intent(ctx, EachData.class));
+        //ctx.startActivity(new Intent(ctx, EachOngoingData.class));
 
 
     }

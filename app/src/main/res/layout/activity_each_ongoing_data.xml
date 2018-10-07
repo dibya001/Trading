@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+                <com.example.dibya.myapplication.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Short"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <Switch
+                    android:id="@+id/type_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Short"
+                    android:textOn="Long" />
+
+                <com.example.dibya.myapplication.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Long"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+                <com.example.dibya.myapplication.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="neiit"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <Switch
+                    android:id="@+id/switch2_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="neiit"
+                    android:textOn="Conlsld" />
+
+                <com.example.dibya.myapplication.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ConsId"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/ch1_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="checkbox1" />
+
+            <CheckBox
+                android:id="@+id/ch2_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="checkbox2" />
+
+            <CheckBox
+                android:id="@+id/ch3_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="checkbox3" />
+
+            <CheckBox
+                android:id="@+id/ch4_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="checkbox4" />
+
+            <CheckBox
+                android:id="@+id/ch5_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="checkbox5" />
+
+            <CheckBox
+                android:id="@+id/ch6_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="checkbox6" />
+
+            <EditText
+                android:id="@+id/entry_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Entry"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/time_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Time"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/target_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Target"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/stop_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Stop"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/warning_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Warnings"
+                android:singleLine="true" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trade Taken"
+                android:id="@+id/trade"
+                />
+            <com.example.dibya.myapplication.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Outcome"
+                />
+
+            <RadioGroup
+                android:id="@+id/rg_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb1_1"
+                    android:enabled="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profit" />
+
+                <RadioButton
+                    android:id="@+id/rb2_1"
+                    android:enabled="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loss" />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/proloss_1"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/comments_1"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Comments"
+                android:singleLine="true" />
+
+            <Button
+                android:id="@+id/finalsubmit"
+                android:enabled="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center|center_horizontal"
+                android:text="Submit"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

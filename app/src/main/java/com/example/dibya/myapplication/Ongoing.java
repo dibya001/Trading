@@ -1,6 +1,8 @@
 package com.example.dibya.myapplication;
 
-public class Ongoing {
+import java.io.Serializable;
+
+public class Ongoing implements Serializable{
     String type, switch2, warnings, checkboxinfo, date, entry, target, stop, userId;
     long timeStamp;
     boolean tradetaken;

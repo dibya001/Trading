@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 public class CompletedTab_Fragment extends android.support.v4.app.Fragment {
 
-    OngoingAdapter rcAdapter;
+    CompletedAdapter rcAdapter;
     RecyclerView rc;
     HashMap<String, Completed> details;
     private DatabaseReference mDatabase;
@@ -27,12 +27,12 @@ public class CompletedTab_Fragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v=inflater.inflate(R.layout.ongoing_tab, container, false);
-        rc= v.findViewById(R.id.ongoing);
+        View v=inflater.inflate(R.layout.completed_tab, container, false);
+        rc= v.findViewById(R.id.completed);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         details = new HashMap<>();
         setData();
-        rcAdapter = new OngoingAdapter(getActivity(), details);
+        rcAdapter = new CompletedAdapter(getActivity(), details);
         rc.setAdapter(rcAdapter);
         makegrid();
         return v;
@@ -45,7 +45,7 @@ public class CompletedTab_Fragment extends android.support.v4.app.Fragment {
     private void setData() {
         showProgressDialog();
 
-        Query myTopPostsQuery = mDatabase.child("Trade_info")
+        Query myTopPostsQuery = mDatabase.child("Completed")
                 .orderByChild("timeStamp");
 
         myTopPostsQuery.addChildEventListener(new ChildEventListener() {

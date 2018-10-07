@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +22,10 @@ import java.util.List;
 
 public class OngoingAdapter extends RecyclerView.Adapter<OngoingAdapter.MyViewHolder> {
     private Context ctx;
-    private HashMap<String, Completed> details;
+    private HashMap<String, Ongoing> details;
     private List<String> keys;
 
-    public OngoingAdapter(Context ctx, HashMap<String, Completed> details) {
+    public OngoingAdapter(Context ctx, HashMap<String, Ongoing> details) {
         this.ctx = ctx;
         this.details = details;
         keys = new ArrayList<>();
@@ -33,22 +34,21 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingAdapter.MyViewHo
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom, parent, false);
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_ongoing, parent, false);
         //layoutView.setMinimumHeight(parent.getMeasuredHeight() / 2);
         return new MyViewHolder(layoutView);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Completed completed = details.get(keys.get(position));
-        holder.amount.setText(completed.getProfit() + "");
-        holder.type.setText(completed.getType());
-        holder.switch2.setText(completed.getSwitch2());
-        holder.protype.setText(completed.getProtype());
-        if (completed.getProtype().equals("Profit"))
-            holder.cardView.setCardBackgroundColor(Color.parseColor("#99ffbb"));
-        else
+        Ongoing ongoing = details.get(keys.get(position));
+        holder.amount.setText(ongoing.getUserId()+ "");
+        holder.type.setText(ongoing.getType());
+        holder.switch2.setText(ongoing.getSwitch2());
+        if (ongoing.getType().equals("Long"))
             holder.cardView.setCardBackgroundColor(Color.parseColor("#ff944d"));
+        else
+            holder.cardView.setCardBackgroundColor(Color.parseColor("#99ffbb"));
     }
 
     @Override
@@ -60,10 +60,11 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingAdapter.MyViewHo
 
     public void start(final int pos) {
 
-        Intent i = null;
-        ctx.startActivity(new Intent(ctx, EachData.class));
-
-
+        Intent i = new Intent(ctx, EachOngoingData.class);
+        String key = keys.get(pos);
+        Log.i("data",details.get(key).getUserId());
+        i.putExtra("data",  details.get(key));
+        ctx.startActivity(i);
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

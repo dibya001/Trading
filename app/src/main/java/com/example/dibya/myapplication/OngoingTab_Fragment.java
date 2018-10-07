@@ -21,7 +21,7 @@ public class OngoingTab_Fragment extends android.support.v4.app.Fragment {
 
     OngoingAdapter rcAdapter;
     RecyclerView rc;
-    HashMap<String, Completed> details;
+    HashMap<String, Ongoing> details;
     private DatabaseReference mDatabase;
     ProgressDialog mProgressDialog;
     @Override
@@ -45,28 +45,28 @@ public class OngoingTab_Fragment extends android.support.v4.app.Fragment {
     private void setData() {
         showProgressDialog();
 
-        Query myTopPostsQuery = mDatabase.child("Trade_info")
+        Query myTopPostsQuery = mDatabase.child("Ongoing")
                 .orderByChild("timeStamp");
 
         myTopPostsQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Completed completed = dataSnapshot.getValue(Completed.class);
-                details.put(dataSnapshot.getKey(), completed);
+                Ongoing Ongoing = dataSnapshot.getValue(Ongoing.class);
+                details.put(dataSnapshot.getKey(), Ongoing);
                 rcAdapter.notifyDataSetChanged();
                 hideProgressDialog();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Completed completed = dataSnapshot.getValue(Completed.class);
-                details.put(dataSnapshot.getKey(), completed);
+                Ongoing ongoing = dataSnapshot.getValue(Ongoing.class);
+                details.put(dataSnapshot.getKey(), ongoing);
                 rcAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                Completed completed = dataSnapshot.getValue(Completed.class);
+                Ongoing ongoing = dataSnapshot.getValue(Ongoing.class);
                 details.remove(dataSnapshot.getKey());
                 rcAdapter.notifyDataSetChanged();
             }
