@@ -171,6 +171,7 @@ public class Add_data extends AppCompatActivity {
                     }
                     ongoing.setSwitch2(data2);
                     ongoing.setEntry(e1.getText().toString());
+                    ongoing.setTime(e2.getText().toString());
                     ongoing.setTarget(e3.getText().toString());
                     ongoing.setStop(e4.getText().toString());
                     ongoing.setWarnings(e5.getText().toString());

@@ -3,7 +3,7 @@ package com.example.dibya.myapplication;
 import java.io.Serializable;
 
 public class Ongoing implements Serializable{
-    String type, switch2, warnings, checkboxinfo, date, entry, target, stop, userId;
+    String type, switch2, warnings, checkboxinfo, date, entry, target, stop, userId, time;
     long timeStamp;
     boolean tradetaken;
 
@@ -94,5 +94,13 @@ public class Ongoing implements Serializable{
 
     public void setStop(String stop) {
         this.stop = stop;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getTime() {
+        return time;
     }
 }

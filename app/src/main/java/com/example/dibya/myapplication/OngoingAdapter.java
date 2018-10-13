@@ -64,6 +64,7 @@ public class OngoingAdapter extends RecyclerView.Adapter<OngoingAdapter.MyViewHo
         String key = keys.get(pos);
         Log.i("data",details.get(key).getUserId());
         i.putExtra("data",  details.get(key));
+        i.putExtra("key",key);
         ctx.startActivity(i);
     }
 

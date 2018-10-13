@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -36,11 +38,16 @@ public class EachOngoingData extends AppCompatActivity {
     Button submit;
     private DatabaseReference mDatabase;
     FirebaseUser firebaseUser;
+    String key;
+    Ongoing ongoing;
+    String current_user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_each_ongoing_data);
-        final Ongoing ongoing = (Ongoing) getIntent().getSerializableExtra("data");
+        ongoing = (Ongoing) getIntent().getSerializableExtra("data");
+        key = getIntent().getStringExtra("key");
+
         //Toast.makeText(this,ongoing.getUserId(),Toast.LENGTH_LONG).show();
 
         Toolbar tb = findViewById(R.id.tb);
@@ -71,8 +78,26 @@ public class EachOngoingData extends AppCompatActivity {
         rb2 = findViewById(R.id.rb2_1);
         tradetaken = findViewById(R.id.trade);
         submit = findViewById(R.id.finalsubmit);
-        FirebaseUser firebaseUser = MyFirebase.mAuth.getCurrentUser();
-        String current_user = firebaseUser.getEmail();
+
+        if(ongoing.getType().equalsIgnoreCase("Long"))
+            s.setChecked(true);
+        else
+            s.setChecked(false);
+
+        if (ongoing.getSwitch2().equalsIgnoreCase("neiit"))
+            s2.setChecked(true);
+        else
+            s2.setChecked(false);
+
+        e1.setText(ongoing.getEntry());
+        e2.setText(ongoing.getTime());
+        e3.setText(ongoing.getTarget());
+        e4.setText(ongoing.getStop());
+        e5.setText(ongoing.getWarnings());
+
+        firebaseUser = MyFirebase.mAuth.getCurrentUser();
+        current_user = firebaseUser.getEmail();
+
 
         if (current_user.equals(ongoing.getUserId()))
         {
@@ -81,6 +106,13 @@ public class EachOngoingData extends AppCompatActivity {
         else
         {
             tradetaken.setEnabled(false);
+            s.setEnabled(false);
+            s2.setEnabled(false);
+            e1.setEnabled(false);
+            e2.setEnabled(false);
+            e3.setEnabled(false);
+            e4.setEnabled(false);
+            e5.setEnabled(false);
         }
 
         if(tradetaken.isEnabled())
@@ -125,13 +157,10 @@ public class EachOngoingData extends AppCompatActivity {
                  completed.setCheckboxinfo("Dummy for now");
                  completed.setComments(e7.getText().toString());
                  if (rb1.isChecked()) {
-
                      proloss = (String) rb1.getText();
 
                  } else {
-
                      proloss = (String) rb2.getText();
-
                  }
                  completed.setProtype(proloss);
                  completed.setProfit(Integer.parseInt(e6.getText().toString()));
@@ -142,6 +171,8 @@ public class EachOngoingData extends AppCompatActivity {
                              public void onSuccess(Void aVoid) {
                                  Intent i = new Intent(EachOngoingData.this, MainActivity.class);
                                  // set the new task and clear flags
+                                 mDatabase.child("Ongoing").child(key).removeValue();
+
                                  i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                  startActivity(i);
                              }
@@ -187,5 +218,26 @@ public class EachOngoingData extends AppCompatActivity {
             }
         }
         return status;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if(current_user.equals(ongoing.getUserId())){
+            getMenuInflater().inflate(R.menu.menu_ongoing,menu);
+            return true;
+        }
+
+        return false;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(current_user.equals(ongoing.getUserId())) {
+            mDatabase.child("Ongoing").child(key).removeValue();
+            return true;
+        }
+        Toast.makeText(this,"Program should never touch this part",Toast.LENGTH_LONG).show();
+        return false;
     }
 }
