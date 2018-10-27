@@ -233,11 +233,38 @@ public class EachOngoingData extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+
         if(current_user.equals(ongoing.getUserId())) {
-            mDatabase.child("Ongoing").child(key).removeValue();
+
+            showConfirm();
+
             return true;
         }
         Toast.makeText(this,"Program should never touch this part",Toast.LENGTH_LONG).show();
         return false;
+    }
+
+    private void showConfirm() {
+        AlertDialog.Builder ab = new AlertDialog.Builder(this);
+        ab.setTitle("Delete Confirmation");
+        ab.setMessage("Are you sure to delete the data?");
+        ab.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                mDatabase.child("Ongoing").child(key).removeValue();
+                Intent j = new Intent(EachOngoingData.this, MainActivity.class);
+                // set the new task and clear flags
+                j.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(j);
+            }
+        });
+        ab.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        ab.show();
     }
 }

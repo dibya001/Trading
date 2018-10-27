@@ -152,7 +152,7 @@ public class Add_data extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                boolean status=validateData();
+                boolean status=true;
                 if(status)
                 {
                     Ongoing ongoing = new Ongoing();
