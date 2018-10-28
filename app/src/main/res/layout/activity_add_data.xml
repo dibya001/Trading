@@ -186,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Entry"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <EditText
@@ -201,7 +201,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Target"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <EditText
@@ -209,7 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Stop"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:singleLine="true" />
 
             <EditText

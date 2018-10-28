@@ -119,6 +119,7 @@ public class EachOngoingData extends AppCompatActivity {
         new SetTime(time4, this);
         new SetTime(time5, this);
         new SetTime(time6, this);
+        new SetTime(e2,this);
 
         if (current_user.equals(ongoing.getUserId()) && ongoing.getTradetaken()==false)
         {
@@ -216,7 +217,7 @@ public class EachOngoingData extends AppCompatActivity {
                 if(submit.getText().equals("Save"))
                 {
                     update_values();
-                    
+
                 }
                 else if(submit.getText().equals("Submit"))
                 {
@@ -236,6 +237,7 @@ public class EachOngoingData extends AppCompatActivity {
                         } else {
                             data2 = (String) s2.getTextOff();
                         }
+                        completed.setTime(e2.getText().toString());
                         completed.setSwitch2(data2);
                         completed.setEntry(e1.getText().toString());
                         completed.setTarget(e3.getText().toString());
@@ -257,7 +259,7 @@ public class EachOngoingData extends AppCompatActivity {
                             proloss = (String) rb2.getText();
                         }
                         completed.setProtype(proloss);
-                        completed.setProfit(Integer.parseInt(e6.getText().toString()));
+                        completed.setProfit(e6.getText().toString());
                         completed.setTimeStamp(System.currentTimeMillis());
                         mDatabase.child("Completed").push().setValue(completed)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {

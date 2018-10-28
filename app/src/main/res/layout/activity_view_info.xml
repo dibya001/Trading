@@ -37,10 +37,11 @@
                     android:textSize="20sp" />
 
                 <Switch
-                    android:id="@+id/type_1"
+                    android:id="@+id/type_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textOff="Short"
+                    android:editable="false"
                     android:textOn="Long" />
 
                 <com.example.dibya.myapplication.MyTextView
@@ -65,10 +66,11 @@
                     android:textSize="20sp" />
 
                 <Switch
-                    android:id="@+id/switch2_1"
+                    android:id="@+id/switch2_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textOff="neiit"
+                    android:editable="false"
                     android:textOn="Conlsld" />
 
                 <com.example.dibya.myapplication.MyTextView
@@ -84,16 +86,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <CheckBox
-                    android:id="@+id/ch1_1"
+                    android:id="@+id/ch1_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
                     android:text="checkbox1" />
-                <EditText
+                <com.example.dibya.myapplication.MyTextView
                     android:layout_width="100dp"
                     android:layout_marginLeft="30dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/time1_1"
+                    android:id="@+id/time1_2"
                     />
             </LinearLayout>
             <LinearLayout
@@ -101,16 +103,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <CheckBox
-                    android:id="@+id/ch2_1"
+                    android:id="@+id/ch2_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
                     android:text="checkbox2" />
-                <EditText
+                <com.example.dibya.myapplication.MyTextView
                     android:layout_width="100dp"
                     android:layout_marginLeft="30dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/time2_1"
+                    android:id="@+id/time2_2"
                     />
             </LinearLayout>
             <LinearLayout
@@ -118,16 +120,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <CheckBox
-                    android:id="@+id/ch3_1"
+                    android:id="@+id/ch3_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
                     android:text="checkbox3" />
-                <EditText
+                <com.example.dibya.myapplication.MyTextView
                     android:layout_width="100dp"
                     android:layout_marginLeft="30dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/time3_1"
+                    android:id="@+id/time3_2"
+
                     />
             </LinearLayout>
             <LinearLayout
@@ -136,16 +139,16 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/ch4_1"
+                    android:id="@+id/ch4_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
                     android:text="checkbox4" />
-                <EditText
+                <com.example.dibya.myapplication.MyTextView
                     android:layout_width="100dp"
                     android:layout_marginLeft="30dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/time4_1"
+                    android:id="@+id/time4_2"
                     />
             </LinearLayout>
             <LinearLayout
@@ -153,16 +156,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <CheckBox
-                    android:id="@+id/ch5_1"
+                    android:id="@+id/ch5_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
                     android:text="checkbox5" />
-                <EditText
+                <com.example.dibya.myapplication.MyTextView
                     android:layout_width="100dp"
                     android:layout_marginLeft="30dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/time5_1"
+                    android:id="@+id/time5_2"
                     />
             </LinearLayout>
             <LinearLayout
@@ -170,116 +173,157 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <CheckBox
-                    android:id="@+id/ch6_1"
+                    android:id="@+id/ch6_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
                     android:text="checkbox6" />
-                <EditText
+                <com.example.dibya.myapplication.MyTextView
                     android:layout_width="100dp"
                     android:layout_marginLeft="30dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/time6_1"
+                    android:id="@+id/time6_2"
                     />
             </LinearLayout>
-            <EditText
-                android:id="@+id/entry_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Entry"
-                android:inputType="numberDecimal"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/time_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Entry Time"
-                android:inputType="numberDecimal"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/target_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Target"
-                android:inputType="numberDecimal"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/stop_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Stop"
-                android:inputType="numberDecimal"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/warning_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Warnings"
-                android:singleLine="true" />
-            <Button
+            <com.example.dibya.myapplication.MyTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trade Taken"
-                android:id="@+id/trade"
+                android:text="Entry"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
+                />
+            <com.example.dibya.myapplication.MyTextView
+                android:id="@+id/entry_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dummy"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
                 />
             <com.example.dibya.myapplication.MyTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Outcome"
+                android:text="Entry Time"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
+                />
+            <com.example.dibya.myapplication.MyTextView
+                android:id="@+id/time_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
+               />
+
+            <com.example.dibya.myapplication.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Target"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
+                />
+            <com.example.dibya.myapplication.MyTextView
+                android:id="@+id/target_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
                 />
 
-            <RadioGroup
-                android:id="@+id/rg_1"
+            <com.example.dibya.myapplication.MyTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rb1_1"
-                    android:enabled="false"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Profit" />
-
-                <RadioButton
-                    android:id="@+id/rb2_1"
-                    android:enabled="false"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Loss" />
-            </RadioGroup>
-
-            <EditText
-                android:id="@+id/proloss_1"
-                android:enabled="false"
+                android:text="Stop"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
+                />
+            <com.example.dibya.myapplication.MyTextView
+                android:id="@+id/stop_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
+                 />
 
-            <EditText
-                android:id="@+id/comments_1"
-                android:enabled="false"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Comments"
-                android:singleLine="true" />
-
-            <Button
-                android:id="@+id/finalsubmit"
+            <com.example.dibya.myapplication.MyTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center"
-                android:layout_marginBottom="10dp"
-                android:background="@color/colorPrimaryDark"
-                android:gravity="center|center_horizontal"
-                android:text="Save"
-                android:textColor="#FFFFFF" />
+                android:text="Warning"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
+                />
+            <com.example.dibya.myapplication.MyTextView
+                android:id="@+id/warning_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
+               />
+            <com.example.dibya.myapplication.MyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Outcome"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
+                />
+            <com.example.dibya.myapplication.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="protype"
+                android:id="@+id/protype_2"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
+            />
+            <com.example.dibya.myapplication.MyTextView
+                android:id="@+id/proloss_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"
+                />
+            <com.example.dibya.myapplication.MyTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Comments"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"/>
+            <com.example.dibya.myapplication.MyTextView
+                android:id="@+id/comments_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_margin="10dp"/>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

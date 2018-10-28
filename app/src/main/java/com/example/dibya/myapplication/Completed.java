@@ -1,11 +1,22 @@
 package com.example.dibya.myapplication;
 
-public class Completed {
-    int profit;
-    String type, switch2, comments, warnings, checkboxinfo, date, entry, target, protype, stop, userId;
+import java.io.Serializable;
+
+public class Completed implements Serializable {
+    String profit;
+    String type, switch2, comments, warnings, checkboxinfo, date, entry, target, protype, stop, userId,time;
     long timeStamp;
     String time1;
     String time2;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     String time3;
     String time4;
     String time5;
@@ -84,7 +95,7 @@ public class Completed {
         return target;
     }
 
-    public int getProfit() {
+    public String getProfit() {
         return profit;
     }
 
@@ -96,7 +107,7 @@ public class Completed {
         return switch2;
     }
 
-    public void setProfit(int profit) {
+    public void setProfit(String profit) {
         this.profit = profit;
     }
 

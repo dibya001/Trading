@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,8 +42,7 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.MyVi
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Completed completed = details.get(keys.get(position));
         holder.amount.setText(completed.getProfit() + "");
-        holder.type.setText(completed.getType());
-        holder.switch2.setText(completed.getSwitch2());
+        holder.type.setText(completed.getUserId());
         holder.protype.setText(completed.getProtype());
         if (completed.getProtype().equals("Profit"))
             holder.cardView.setCardBackgroundColor(Color.parseColor("#99ffbb"));
@@ -59,8 +59,12 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.MyVi
 
     public void start(final int pos) {
 
-        Intent i = null;
-        //ctx.startActivity(new Intent(ctx, EachOngoingData.class));
+        Intent i = new Intent(ctx, ViewInfo.class);
+        String key = keys.get(pos);
+        Log.i("data",details.get(key).getUserId());
+        i.putExtra("data",  details.get(key));
+        i.putExtra("key",key);
+        ctx.startActivity(i);
 
 
     }
@@ -75,7 +79,6 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.MyVi
             type = itemView.findViewById(R.id.type1);
             protype = itemView.findViewById(R.id.protype1);
             amount = itemView.findViewById(R.id.amount1);
-            switch2 = itemView.findViewById(R.id.switch21);
             ll = itemView.findViewById(R.id.click);
             ll.setOnClickListener(this);
         }

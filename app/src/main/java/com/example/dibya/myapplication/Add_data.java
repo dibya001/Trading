@@ -157,6 +157,7 @@ public class Add_data extends AppCompatActivity {
         time4 = findViewById(R.id.time4);
         time5 = findViewById(R.id.time5);
         time6 = findViewById(R.id.time6);
+        new SetTime(e2,this);
         new SetTime(time1, this);
         new SetTime(time2, this);
         new SetTime(time3, this);
