@@ -21,118 +21,179 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+                android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
 
-                <com.example.dibya.myapplication.MyTextView
+                    <com.example.dibya.myapplication.MyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Short"
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
+
+                    <Switch
+                        android:id="@+id/type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textOff="Short"
+                        android:textOn="Long" />
+
+                    <com.example.dibya.myapplication.MyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Long"
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <com.example.dibya.myapplication.MyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="neiit"
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
+
+                    <Switch
+                        android:id="@+id/switch2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textOff="neiit"
+                        android:textOn="Conlsld" />
+
+                    <com.example.dibya.myapplication.MyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ConsId"
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Short"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
-
-                <Switch
-                    android:id="@+id/type"
+                    android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/ch1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="checkbox1" />
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/time1"
+                        />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textOff="Short"
-                    android:textOn="Long" />
-
-                <com.example.dibya.myapplication.MyTextView
-                    android:layout_width="wrap_content"
+                    android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/ch2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Long"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
+                    android:enabled="false"
+                    android:text="checkbox2" />
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/time2"
+                    />
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:orientation="horizontal">
-
-                <com.example.dibya.myapplication.MyTextView
-                    android:layout_width="wrap_content"
+                <CheckBox
+                    android:id="@+id/ch3"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="neiit"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
-
-                <Switch
-                    android:id="@+id/switch2"
-                    android:layout_width="wrap_content"
+                    android:enabled="false"
+                    android:text="checkbox3" />
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_height="wrap_content"
-                    android:textOff="neiit"
-                    android:textOn="Conlsld" />
-
-                <com.example.dibya.myapplication.MyTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ConsId"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
+                    android:id="@+id/time3"
+                    />
             </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/ch1"
-                android:layout_width="match_parent"
+                <CheckBox
+                    android:id="@+id/ch4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="checkbox4" />
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/time4"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="checkbox1" />
-
-            <CheckBox
-                android:id="@+id/ch2"
-                android:layout_width="match_parent"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/ch5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="checkbox5" />
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/time5"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="checkbox2" />
-
-            <CheckBox
-                android:id="@+id/ch3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="checkbox3" />
-
-            <CheckBox
-                android:id="@+id/ch4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="checkbox4" />
-
-            <CheckBox
-                android:id="@+id/ch5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="checkbox5" />
-
-            <CheckBox
-                android:id="@+id/ch6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="checkbox6" />
-
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/ch6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="checkbox6" />
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/time6"
+                    />
+            </LinearLayout>
             <EditText
                 android:id="@+id/entry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Entry"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <EditText
                 android:id="@+id/time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Time"
+                android:hint="Entry Time"
                 android:singleLine="true" />
 
             <EditText
@@ -140,6 +201,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Target"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <EditText
@@ -147,6 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Stop"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <EditText

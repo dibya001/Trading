@@ -79,60 +79,123 @@
                     android:textSize="20sp" />
             </LinearLayout>
 
-            <CheckBox
-                android:id="@+id/ch1_1"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="checkbox1" />
-
-            <CheckBox
-                android:id="@+id/ch2_1"
-                android:layout_width="match_parent"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/ch1_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="checkbox1" />
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/time1_1"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="checkbox2" />
-
-            <CheckBox
-                android:id="@+id/ch3_1"
-                android:layout_width="match_parent"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/ch2_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="checkbox2" />
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/time2_1"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="checkbox3" />
-
-            <CheckBox
-                android:id="@+id/ch4_1"
-                android:layout_width="match_parent"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/ch3_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="checkbox3" />
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/time3_1"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="checkbox4" />
+                android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/ch5_1"
-                android:layout_width="match_parent"
+                <CheckBox
+                    android:id="@+id/ch4_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="checkbox4" />
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/time4_1"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="checkbox5" />
-
-            <CheckBox
-                android:id="@+id/ch6_1"
-                android:layout_width="match_parent"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/ch5_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="checkbox5" />
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/time5_1"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="checkbox6" />
-
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/ch6_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="checkbox6" />
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/time6_1"
+                    />
+            </LinearLayout>
             <EditText
                 android:id="@+id/entry_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Entry"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <EditText
                 android:id="@+id/time_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Time"
+                android:hint="Entry Time"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <EditText
@@ -140,6 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Target"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <EditText
@@ -147,6 +211,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Stop"
+                android:inputType="number"
                 android:singleLine="true" />
 
             <EditText
@@ -207,14 +272,13 @@
 
             <Button
                 android:id="@+id/finalsubmit"
-                android:enabled="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
                 android:layout_marginBottom="10dp"
                 android:background="@color/colorPrimaryDark"
                 android:gravity="center|center_horizontal"
-                android:text="Submit"
+                android:text="Save"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
     </ScrollView>

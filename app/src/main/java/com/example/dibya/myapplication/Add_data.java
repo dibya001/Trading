@@ -1,5 +1,6 @@
 package com.example.dibya.myapplication;
 
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Switch;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,6 +25,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
 
 public class Add_data extends AppCompatActivity {
 
@@ -35,6 +39,7 @@ public class Add_data extends AppCompatActivity {
     Switch s, s2;
     private DatabaseReference mDatabase;
     FirebaseUser firebaseUser;
+    EditText time1,time2,time3,time4,time5,time6;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,6 +151,18 @@ public class Add_data extends AppCompatActivity {
         e3 = findViewById(R.id.target);
         e4 = findViewById(R.id.stop);
         e5 = findViewById(R.id.warning);
+        time1 = findViewById(R.id.time1);
+        time2 = findViewById(R.id.time2);
+        time3 = findViewById(R.id.time3);
+        time4 = findViewById(R.id.time4);
+        time5 = findViewById(R.id.time5);
+        time6 = findViewById(R.id.time6);
+        new SetTime(time1, this);
+        new SetTime(time2, this);
+        new SetTime(time3, this);
+        new SetTime(time4, this);
+        new SetTime(time5, this);
+        new SetTime(time6, this);
 
         save = findViewById(R.id.save);
         save.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +186,12 @@ public class Add_data extends AppCompatActivity {
                     } else {
                         data2 = (String) s2.getTextOff();
                     }
+                    ongoing.setTime1(time1.getText().toString());
+                    ongoing.setTime2(time2.getText().toString());
+                    ongoing.setTime3(time3.getText().toString());
+                    ongoing.setTime4(time4.getText().toString());
+                    ongoing.setTime5(time5.getText().toString());
+                    ongoing.setTime6(time6.getText().toString());
                     ongoing.setSwitch2(data2);
                     ongoing.setEntry(e1.getText().toString());
                     ongoing.setTime(e2.getText().toString());
@@ -205,8 +228,23 @@ public class Add_data extends AppCompatActivity {
 
             }
         });
-    }
 
+    }
+    public void setTiming(final EditText et) {
+
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(Add_data.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                et.setText( selectedHour + ":" + selectedMinute);
+            }
+        }, hour, minute, true);//Yes 24 hour time
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
+    }
     private void showAlert() {
         AlertDialog.Builder ab = new AlertDialog.Builder(this);
         ab.setTitle("Can't Push Data to Server");
